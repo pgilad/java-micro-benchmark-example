@@ -7,9 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * State is used to prevent constant folding. Blackhole is used to prevent dead code elimination.
+ * State is used to prevent constant folding by JVM.
+ * Blackhole is used to prevent dead code elimination by JVM
  */
-public class MyBenchmark {
+public class PatternMatchingBenchmark {
 
     @Benchmark
     @Fork(value = 1)
