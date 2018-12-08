@@ -13,7 +13,7 @@ public class ArraySlicingBenchmark {
   @Warmup(iterations = 2)
   @Measurement(iterations = 5)
   public void testArraysCopyRange(ArraySlicingBenchmark.MyState state, Blackhole blackhole) {
-    MyClass[] newData = Arrays.copyOfRange(state.data, 0, 100);
+    MyClass[] newData = Arrays.copyOfRange(state.data, state.zeroIndex, state.limitIndex);
     blackhole.consume(newData);
   }
 
@@ -24,7 +24,7 @@ public class ArraySlicingBenchmark {
   public void testArrayStreamLimit(ArraySlicingBenchmark.MyState state, Blackhole blackhole) {
     MyClass[] newData = Arrays
       .stream(state.data)
-      .limit(100)
+      .limit(state.limitIndex)
       .toArray(MyClass[]::new);
 
     blackhole.consume(newData);
@@ -32,6 +32,9 @@ public class ArraySlicingBenchmark {
 
   @State(Scope.Thread)
   public static class MyState {
+    int zeroIndex = 0;
+    int limitIndex = 100;
+
     MyClass[] data = IntStream.generate(() -> 1)
       .limit(200)
       .mapToObj(MyClass::new)
