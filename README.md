@@ -144,4 +144,4 @@ PatternMatchingBenchmark.testPatternMatch   thrpt    5    420609.210 ± 105556.6
 
 ## License
 
-MIT
+MIT © [Gilad Peleg](https://www.giladpeleg.com)
